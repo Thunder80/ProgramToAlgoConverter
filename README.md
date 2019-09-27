@@ -4,9 +4,11 @@ this does the 90% job.
 
 How to use this:-
 Step 1: Create a input.txt file in the file in the folder where this program is located
-Step 2: Paste the C code in the input.txt file, you just have to paste the function of whose algorithm you want
-		ONLY ONE FUNCTION AT A TIME SHOULD BE PASTED IN THE FILE TO GET THE DESIRED RESULTS
+
+Step 2: Paste the C code in the input.txt file, you just have to paste the function of whose algorithm you want					ONLY ONE FUNCTION AT A TIME SHOULD BE PASTED IN THE FILE TO GET THE DESIRED RESULTS
+
 Step 3: Run this program
+
 Step 4: The output should be printed in the console.
 
 Assumptions:
