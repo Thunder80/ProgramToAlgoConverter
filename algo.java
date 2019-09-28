@@ -24,10 +24,12 @@ class algo{
 	public static void main(String[] args) throws Exception{
 		FileReader f = new FileReader("input.txt");
 		BufferedReader br = new BufferedReader(f);
-		Stack<String> whileLoopCounter = new Stack<String>();
-		HashMap<Integer, String> map = new HashMap<>();
+		Stack<String> loopCounter = new Stack<String>();
+		HashMap<Integer, BracketAC> loopBacktracking = new HashMap<>();
+		HashMap<Integer, Integer> loopFronttracking = new HashMap<>();
 		int brackets = 0;
 		String input = "";
+		String output = "";
 		String line;
 		while((line=br.readLine()) != null)
 		{
@@ -45,21 +47,22 @@ class algo{
 			{
 				if(s.indexOf("while") != -1)
 				{
-					System.out.println("Step " + steps++ + ": " + "if (" + s.substring(s.indexOf('(')+1, s.indexOf(')')) + ") then go to step /*STEP NUMBER*/ else go to step /*STEP NUMBER*/");
+					output += "Step " + steps++ + ": " + "if (" + s.substring(s.indexOf('(')+1, s.indexOf(')')) + ") then go to step " + loopBacktracking.get(brackets-1).getAddress() + " else go to step " + steps + '\n';
+					loopBacktracking.remove(brackets-1);
 				}
 				else if(firstToken.equals("break;"))
 				{
-					System.out.println("Step " + steps++ + ": Go to step /*STEP NUMBER*/");
+					output += "Step " + steps++ + ": Go to step /*STEP NUMBER*/" + '\n';
 				}
 				else if(firstToken.equals("printf") || firstToken.equals("puts"))
 				{
 					if(s.indexOf(',') != -1)
-						System.out.println("Step " + steps++ + ": Printing " + s.substring(s.indexOf(',')+1, s.indexOf(')')));
+						output += "Step " + steps++ + ": Printing " + s.substring(s.indexOf(',')+1, s.indexOf(')')) + '\n';
 					else
-						System.out.println("Step " + steps++ + ": Printing " + s.substring(s.indexOf('(')+2, s.indexOf(')')-1));
+						output += "Step " + steps++ + ": Printing " + s.substring(s.indexOf('(')+2, s.indexOf(')')-1) + '\n';
 				}
 				else if(!firstToken.equals("int") && !firstToken.equals("float") && !firstToken.equals("char"))
-					System.out.println("Step " + steps++ + ": " + s.substring(0, s.length()-1));
+					output += "Step " + steps++ + ": " + s.substring(0, s.length()-1) + '\n';
 				else
 				{
 					String initializations = "";
@@ -72,7 +75,15 @@ class algo{
 							initializations += variable + ", ";
 					}
 					if(initializations.length() > 0)
-						System.out.println("Step " + steps++ + ": " + initializations.substring(0, initializations.length()-2));
+						output += "Step " + steps++ + ": " + initializations.substring(0, initializations.length()-2) + '\n';
+				}
+				if(s.indexOf('{') != -1)
+					brackets++;
+				if(s.indexOf('}') != -1)
+				{	
+					brackets--;
+					if(loopCounter.size() > 0)
+						loopCounter.pop();
 				}
 
 			}
@@ -84,43 +95,89 @@ class algo{
 					String initialCondition = s.substring(s.indexOf('(')+1, s.indexOf(';'));
 					String terminatingCondition = s.substring(s.indexOf(';')+1, s.indexOf(';', s.indexOf(';')+1));
 					String increment = s.substring(s.indexOf(';', s.indexOf(';')+1)+1, s.indexOf(')'));
-					System.out.println("Step " + steps++ + ": " + initialCondition);
-					System.out.println("Step " + steps++ + ": " + "if (" + terminatingCondition + ") then go to step " + steps + " else go to step /*STEP NUMBER*/");
-					map.put(brackets, increment);
-					whileLoopCounter.push("FOR");
+					output += "Step " + steps++ + ": " + initialCondition + '\n';
+					output += "Step " + steps++ + ": " + "if (" + terminatingCondition + ") then go to step " + steps + " else go to step /*STEP NUMBER*/" + '\n';
+					loopBacktracking.put(brackets, new BracketAC(steps-1, increment));
+					loopCounter.push("FOR");
 				}
 				else if(firstToken.equals("if") || (firstToken.equals("else") && currLine.hasMoreTokens() && (currLine.nextToken()).equals("if")))
 				{
 					String condition = s.substring(s.indexOf('(')+1, s.indexOf(')'));
-					System.out.println("Step " + steps++ + ": if (" + condition + ") then go to step " + steps + "/*else go to step /*STEP NUMBER*/*/");
-					whileLoopCounter.push("IF");
+					output += "Step " + steps++ + ": if (" + condition + ") then go to step " + steps + "/*else go to step /*STEP NUMBER*/*/" + '\n';
+					loopCounter.push("IF");
 				}
 				else if(firstToken.equals("while"))
 				{
 					String condition = s.substring(s.indexOf('(')+1, s.indexOf(')'));
-					System.out.println("Step " + steps++ + ": if (" + condition + ") then go to step " + steps + " else go to step /*STEP NUMBER*/");
-					whileLoopCounter.push("WHILE");
+					output += "Step " + steps++ + ": if (" + condition + ") then go to step " + steps + " else go to step /*STEP NUMBER*/" + '\n';
+					loopCounter.push("WHILE");
+					loopBacktracking.put(brackets, new BracketAC(steps-1, ""));
 				}
 				else if(firstToken.equals("do"))
 				{
-					whileLoopCounter.push("DO");
+					loopCounter.push("DO");
+					loopBacktracking.put(brackets, new BracketAC(steps, ""));
 				}
-				else if(firstToken.equals("{"))
+				else if(s.indexOf('{') != -1)
 					brackets++;
-				else if(firstToken.equals("}"))
+				else if(s.indexOf('}') != -1)
 				{
 					brackets--;
-					if(whileLoopCounter.size() > 0 && (whileLoopCounter.peek()).equals("FOR"))
+					if(loopCounter.size() > 0)
 					{	
-						System.out.println("Step " + steps++ + ": " + map.get(brackets) + ", go to step /*STEP NUMBER*/");
-						map.remove(brackets);
+						if(loopCounter.peek().equals("FOR"))
+						{
+							output += "Step " + steps++ + ": " + loopBacktracking.get(brackets).getContent() + ", go to step " + loopBacktracking.get(brackets).getAddress()+ '\n';
+							loopFronttracking.put(loopBacktracking.get(brackets).getAddress(), steps);
+							loopBacktracking.remove(brackets);
+						}
+						if(loopCounter.peek().equals("WHILE"))
+						{
+							loopFronttracking.put(loopBacktracking.get(brackets).getAddress(), steps);
+							loopBacktracking.remove(brackets);
+						}
 					}
-					if(whileLoopCounter.size() > 0)
-					whileLoopCounter.pop();
+					if(loopCounter.size() > 0)
+						loopCounter.pop();
 				}
 			}
 		}
-		System.out.println("Step " + steps++ + ": End");
-		
+		output += "Step " + steps + ": End";
+		String lines[] = new String[steps];
+		int k = 0;
+		StringTokenizer outputTokenizer = new StringTokenizer(output, "\n");
+		while(outputTokenizer.hasMoreTokens())
+		{
+			lines[k++] = outputTokenizer.nextToken();
+		}
+		for(Map.Entry<Integer, Integer> e: loopFronttracking.entrySet())
+		{
+			lines[e.getKey()-1] = lines[e.getKey()-1].replace(" else go to step /*STEP NUMBER*/", " else go to step " + e.getValue());
+		}
+		output = "";
+		for(int i = 0;i < steps;i++)
+			output += lines[i] + '\n';
+		System.out.println(output);
+	}
+}
+
+
+class BracketAC{
+	private int address;
+	private String content;
+	BracketAC(int address, String content)
+	{
+		this.address = address;
+		this.content = content;
+	}
+
+	String getContent()
+	{
+		return content;
+	}
+
+	int getAddress()
+	{
+		return address;
 	}
 }
