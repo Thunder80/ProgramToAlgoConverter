@@ -1,7 +1,7 @@
 # ProgramToAlgoConverter
 AlgoVersion3.java is the latest but unstable.
 This is a simple, not so flexible program, to convert a program into an its algorithm. You need to edit the ouput of this program but
-this does the 90% job.
+this does the 95% job.
 
 How to use this:-
 Step 1: Create a input.txt file in the file in the folder where this program is located
