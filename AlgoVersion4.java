@@ -11,10 +11,8 @@ Step 4: The output should be printed in the console.
 
 Assumtions:
 1. Your program is syntactically correct
-2. Your program does not contain any unnecessary curly brackets
-3. You have used the standard spacings
-4. The curly brackets for for-loop, while-loop, if, else, do-while-loop should start on a new line.
-5. This program cannot handle switch case or strcutures algorithm so these should not be included in the code
+2. You have used the standard spacings
+3. This program cannot handle switch case or strcutures algorithm so these should not be included in the code
 
 */
 import java.io.*;
@@ -23,12 +21,30 @@ import java.util.regex.*;
 
 class algo{
 	public static void main(String[] args) throws Exception{
+		//taking the input source code from user
 		FileReader f = new FileReader("input.txt");
 		BufferedReader br = new BufferedReader(f);
+		/*
+		loopCounter variable keeps track of the current block the system is currently in(that is
+		whether it is in a for block, if block etc). Currently existing block: FOR, IF, IFELSE, ELSE
+		DO, WHILE.
+		*/
 		Stack<String> loopCounter = new Stack<String>();
+		/*
+		loopBacktracking variable keeps track of the starting position of a block. The hashmap's key is 
+		an integer which represents the current depth of the bracket(nth bracket that the system is 
+		currently in) and the value of the hashmap stores the 
+		*/
 		HashMap<Integer, BracketAC> loopBacktracking = new HashMap<>();
+		/*
+		loopFronttracking variable keeps track of the ending postion of a certain block with respect to its 
+		bracket depth.
+		*/
 		HashMap<Integer, Integer> loopFronttracking = new HashMap<>();
+		//brackets variable keep tracks of the depth of the bracket(number of opening brackets)
 		int brackets = 0;
+		//rawInput variable stores the input from the file as a string
+		//input variable stores the rawInput after it has been formatted
 		String rawInput = "", input;
 		String output = "";
 		String line;
@@ -46,7 +62,16 @@ class algo{
 			String firstToken = currLine.nextToken();
 			if(s.charAt(s.length()-1) == ';')
 			{
-				if(s.indexOf("while") != -1)
+				if(firstToken.equals("scanf"))
+				{
+					int ampPos = s.indexOf("&");
+					while(ampPos != -1)
+					{	
+						output += "Step " + steps++ + ": " + "Taking input in " + s.substring(ampPos+1, ampPos+2) + '\n';
+						ampPos = s.indexOf("&", ampPos+2);
+					}
+				}
+				else if(s.indexOf("while") != -1)
 				{
 					output += "Step " + steps++ + ": " + "if (" + s.substring(s.indexOf('(')+1, s.indexOf(')')) + ") then go to step " + loopBacktracking.get(brackets-1).getAddress() + " else go to step " + steps + '\n';
 					loopBacktracking.remove(brackets-1);
@@ -177,12 +202,12 @@ class algo{
 		output = "";
 		for(int i = 0;i < steps;i++)
 			output += lines[i] + '\n';
-		output = output.replace("=", " <- ");
+		/*output = output.replace("=", " <- ");
 		output = output.replace(" <-  <- ", "==");
 		output = output.replace("&&", " AND ");
 		output = output.replace("||", " OR ");
 		output = output.replace("%", " MOD ");
-		output = output.replace("!=", " NOTEQUALTO ");
+		output = output.replace("!=", " NOTEQUALTO ");*/
 		System.out.println(output);
 	}
 
