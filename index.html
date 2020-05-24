@@ -1,30 +1,40 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Program to Algo Converter</title>
 	<!-- <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet"> -->
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+		integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
 </head>
+
 <body>
 	<div id="container">
 		<button class="button" id="theme"><i class="fa fa-sun"></i></button>
 		<h1 class="header">Program to Algorithm Converter</h1>
-		<p class="trash-talk">Are you a Computer Science student? Are you frustrated writing algorithms for all your programs? Then worry not this small project will save thousands of hour of your life. Hope you will be benefitted by this and please help more of your fellow frustrated friends and waste your time doing something fun rather than writing algos.</p>
+		<p class="trash-talk">Are you a Computer Science student? Are you frustrated writing algorithms for all your
+			programs? Then worry not this small project will save thousands of hour of your life. Hope you will be
+			benefitted by this and please help more of your fellow frustrated friends and waste your time doing
+			something fun rather than writing algos.</p>
 		<div id="hero">
 			<div class="hero-item">
 				<h3 style="text-align: center;">Enter your C code here:</h3>
 				<textarea id="input"></textarea>
 			</div>
-			<div class="hero-item"> 
+			<div class="hero-item">
 				<h3 style="text-align: center;">Your algorithm:</h3>
 				<textarea readonly id="output"></textarea>
 			</div>
 		</div>
 		<button class="button" onclick="convert()" id="convert">Convert</button>
 		<h3 class="header">Disclaimer</h3>
-		<p class="trash-talk">I am not a compilier designer by any means, in fact I have almost no or very minimum knowledge about compilier design, I am just college student so don't expect this to be 100% bug free. This is just a tool to save some time for the college students so if you provide code written in proper convention and the code is compilied it should work for most of the times. <b>Even if it works it will be still recommended to check it once and make the small changes.</b></p>
+		<p class="trash-talk">I am not a compilier designer by any means, in fact I have almost no or very minimum
+			knowledge about compilier design, I am just college student so don't expect this to be 100% bug free. This
+			is just a tool to save some time for the college students so if you provide code written in proper
+			convention and the code is compilied it should work for most of the times. <b>Even if it works it will be
+				still recommended to check it once and make the small changes.</b></p>
 		<br>
 		<br>
 		<h3 class="header">Contact Me</h3>
@@ -47,14 +57,12 @@
 		let theme = "dark";
 		let root = document.documentElement;
 		document.getElementById("theme").addEventListener('click', () => {
-			if(theme === "dark")
-			{
+			if (theme === "dark") {
 				root.style.setProperty("--primary-dark", "#eee");
 				root.style.setProperty("--primary-light", "#000");
 				theme = "light";
 			}
-			else
-			{
+			else {
 				root.style.setProperty("--primary-dark", "#000");
 				root.style.setProperty("--primary-light", "#eee");
 				theme = "dark";
@@ -63,4 +71,5 @@
 
 	</script>
 </body>
+
 </html>
