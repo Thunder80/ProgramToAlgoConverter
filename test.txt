@@ -1,0 +1,35 @@
+Points covered:- 
+	Syntax Format:
+	1. Declaration(with signs, without signs)
+	2. if statements(all)
+	3. for loop
+	4. while loop
+	5. do while loop
+	6. switch statements
+	7. structures
+	8. includes
+An ADT with the name of Node has been declared with the following fields: 'a' of type int
+Begin procedure function(int p , int x):-
+Step 1: SET aasdfaldfj := 90
+Step 2: SET a := 80
+Step 3: SET b := 30
+Step 4: if a = 30 then :
+	Step 1: PRINT Success \ n
+End of if block
+Step 5: else :
+	Step 1: if a = 40 and b = 90 then :
+		Step 1: READ  c
+	End of if block
+End of else block
+Step 6: else :
+	Step 1: PRINT Failure \ n
+End of else block
+Step 7: SET printf := 90
+Step 8: PRINT printf
+End procedure
+Begin procedure hello():-
+Step 1: SET c := 90
+Step 2: if c = 90 then :
+	Step 1: SET c := 95
+End of if block
+End procedure
