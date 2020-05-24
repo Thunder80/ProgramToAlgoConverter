@@ -1,4 +1,8 @@
 # ProgramToAlgoConverter
+Use the online version: https://thunder80.github.io/ProgramToAlgoConverter
+
+
+# Previous Implementation
 AlgoVersion4.java is the latest but unstable.
 This is a simple, not so flexible program, to convert a program into an its algorithm. You need to edit the ouput of this program but
 this does the 95% job.
