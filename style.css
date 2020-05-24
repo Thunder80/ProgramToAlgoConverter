@@ -74,13 +74,13 @@
 	margin: 10px;
 	width: 100px;
 	height: 40px;
-	border: 2px solid var(--primary-light);
+	border: none;
 	border-radius: 7px;
 	background-color: var(--primary-light);
 	color: var(--primary-dark);
 	transition: background-color 0.2s ease, color .1s ease;
 	cursor: pointer;
-	font-size: 18px;
+	font-size: 24px;
 	font-weight: bold;
 }
 
@@ -93,10 +93,11 @@
 	position: fixed;
 	top: 0px;
 	right: 0px;
-	height: 50px;
-	width: 50px;
+	height: 30px;
+	width: 30px;
 	font-size: 14px;
 	border-radius: 50%;
+	text-align: center;
 }
 #icons{
 	margin-top: 10px;

@@ -12,7 +12,7 @@
 
 <body>
 	<div id="container">
-		<button class="button" id="theme"><i class="fa fa-sun"></i></button>
+		<button class="button" id="theme"><i style="font-size: 20px;margin-top: 1px;" class="fa fa-moon"></i></button>
 		<h1 class="header">Program to Algorithm Converter</h1>
 		<p class="trash-talk">Are you a Computer Science student? Are you frustrated writing algorithms for all your
 			programs? Then worry not this small project will save thousands of hour of your life. Hope you will be
@@ -56,15 +56,19 @@
 	<script type="text/javascript">
 		let theme = "dark";
 		let root = document.documentElement;
-		document.getElementById("theme").addEventListener('click', () => {
+		document.getElementById("theme").addEventListener('click', function () {
 			if (theme === "dark") {
 				root.style.setProperty("--primary-dark", "#eee");
 				root.style.setProperty("--primary-light", "#000");
+				this.children[0].classList.remove("fa-moon");
+				this.children[0].classList.add("fa-sun");
 				theme = "light";
 			}
 			else {
 				root.style.setProperty("--primary-dark", "#000");
 				root.style.setProperty("--primary-light", "#eee");
+				this.children[0].classList.remove("fa-sun");
+				this.children[0].classList.add("fa-moon");
 				theme = "dark";
 			}
 		});
