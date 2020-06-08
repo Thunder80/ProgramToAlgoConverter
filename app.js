@@ -1,4 +1,5 @@
 const datatypes = ['int', 'float', 'char', 'void', 'long', 'double'];
+const operators = ['+', '-', '/', '*', '^', '&', '!'];
 let inputArray;
 let line = [];
 const error = (i) =>
@@ -218,6 +219,19 @@ function evaluate(input) {
                 return error(i);
             }
             output += `${tab}Step ${steps[stepCounter]}: SET ${input[i]} := ${expression}\n`;
+            i = end;
+            steps[stepCounter]++;
+        } else if (
+            validToken(input[i]) &&
+            operators.includes(input[i + 1]) &&
+            input[i + 2] === '='
+        ) {
+            let end = inputArray.indexOf(';', i);
+            let last = inputArray.slice(i + 3, end).join(' ');
+            let expression = `${input[i]} := ${input[i]} ${
+                input[i + 1]
+            } ${last}`;
+            output += `${tab}Step ${steps[stepCounter]}: SET ${expression}\n`;
             i = end;
             steps[stepCounter]++;
         }
