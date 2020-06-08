@@ -1,147 +1,119 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Program to Algo Converter</title>
-	<!-- <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet"> -->
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
-</head>
-<body>
-	<div id="container">
-		<button class="button" id="theme">Theme</button>
-		<h1 class="header">Program to Algorithm Converter</h1>
-		<p class="trash-talk">Are you a Computer Science student? Are you frustrated writing algorithms for all your programs? Then worry not this small project will save thousands of hour of your life. Hope you will be benefitted by this and please help more of your fellow frustrated friends and waste your time doing something fun rather than writing algos.</p>
-		<div id="hero">
-			<div class="hero-item">
-				<h3 style="text-align: center;">Enter your C code here:</h3>
-				<textarea id="input"></textarea>
-			</div>
-			<div class="hero-item"> 
-				<h3 style="text-align: center;">Your algorithm:</h3>
-				<textarea readonly id="output"></textarea>
-			</div>
-		</div>
-		<button class="button" onclick="convert()" id="convert">Convert</button>
-		<h3 class="header">Disclaimer</h3>
-		<p class="trash-talk">I am not a compilier designer by any means, in fact I have almost no or very minimum knowledge about compilier design, I am just college student so don't expect this to be 100% bug free. This is just a tool to save some time for the college students so if you provide code written in proper convention and the code is compilied it should work for most of the times. <b>Even if it works it will be still recommended to check it once and make the small changes.</b></p>
-		<br>
-		<br>
-		<h3 class="header">Contact Me</h3>
-		<p class="trash-talk">You found a bug? Feel free to mention it in the social media links below. </p>
-		<div id="icons">
-			<div class="icon" onclick="window.open('https://www.facebook.com/sayan.bhattacharya.5099940/')">
-				<i class="fab fa-facebook-f"></i>
-			</div>
-			<div class="icon" onclick="window.open('https://github.com/Thunder80')">
-				<i class="fab fa-github"></i>
-			</div>
-			<div class="icon" onclick="window.open('https://www.linkedin.com/in/sayan-bhattacharya-200457189/')">
-				<i class="fab fa-linkedin"></i>
-			</div>
-		</div>
-		<hr style="width: 40vw;margin-bottom: 30px;margin-top: 20px;">
-	</div>
-	<script type="text/javascript" src="app.js"></script>
-	<script type="text/javascript">
-		let theme = "dark";
-		let root = document.documentElement;
-		document.getElementById("theme").addEventListener('click', () => {
-			if(theme === "dark")
-			{
-				root.style.setProperty("--primary-dark", "#eee");
-				root.style.setProperty("--primary-light", "#000");
-				theme = "light";
-			}
-			else
-			{
-				root.style.setProperty("--primary-dark", "#000");
-				root.style.setProperty("--primary-light", "#eee");
-				theme = "dark";
-			}
-		});
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Program to Algo Converter</title>
+        <!-- <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet"> -->
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css"
+            integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o="
+            crossorigin="anonymous"
+        />
 
-	</script>
-</body>
-=======
-<!DOCTYPE html>
-<html>
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="jquery.numberedtextarea.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <button class="button" id="theme">
+                <i id="icon" class="fa fa-moon"></i>
+            </button>
+            <h1 class="header">Program to Algorithm Converter</h1>
+            <p class="trash-talk">
+                Are you a Computer Science student? Are you frustrated writing
+                algorithms for all your programs? Then worry not this small
+                project will save thousands of hour of your life. Hope you will
+                be benefitted by this and please help more of your fellow
+                frustrated friends and waste your time doing something fun
+                rather than writing algos.
+            </p>
+            <div id="hero">
+                <div class="hero-item">
+                    <h3 style="text-align: center;">Enter your C code here:</h3>
+                    <textarea id="input"></textarea>
+                </div>
+                <div class="hero-item">
+                    <h3 style="text-align: center;">Your algorithm:</h3>
+                    <textarea readonly id="output"></textarea>
+                </div>
+            </div>
+            <button class="button" onclick="convert()" id="convert">
+                Convert
+            </button>
+            <h3 class="header">Disclaimer</h3>
+            <p class="trash-talk">
+                I am not a compilier designer by any means, in fact I have
+                almost no or very minimum knowledge about compilier design, I am
+                just college student so don't expect this to be 100% bug free.
+                This is just a tool to save some time for the college students
+                so if you provide code written in proper convention and the code
+                is compilied it should work for most of the times.
+                <b
+                    >Even if it works it will be still recommended to check it
+                    once and make the small changes.</b
+                >
+            </p>
+            <br />
+            <br />
+            <h3 class="header">Contact Me</h3>
+            <p class="trash-talk">
+                You found a bug? Feel free to mention it in the social media
+                links below.
+            </p>
+            <div id="icons">
+                <div
+                    class="icon"
+                    onclick="window.open('https://www.facebook.com/sayan.bhattacharya.5099940/')"
+                >
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div
+                    class="icon"
+                    onclick="window.open('https://github.com/Thunder80')"
+                >
+                    <i class="fab fa-github"></i>
+                </div>
+                <div
+                    class="icon"
+                    onclick="window.open('https://www.linkedin.com/in/sayan-bhattacharya-200457189/')"
+                >
+                    <i class="fab fa-linkedin"></i>
+                </div>
+            </div>
+            <hr style="width: 40vw; margin-bottom: 30px; margin-top: 20px;" />
+        </div>
+        <script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript">
+            let theme = 'dark';
+            let root = document.documentElement;
+            let icon = document.getElementById('icon');
+            document.getElementById('theme').addEventListener('click', () => {
+                if (theme === 'dark') {
+                    root.style.setProperty('--primary-dark', '#eee');
+                    root.style.setProperty('--primary-light', '#000');
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    theme = 'light';
+                } else {
+                    root.style.setProperty('--primary-dark', '#000');
+                    root.style.setProperty('--primary-light', '#eee');
+                    icon.classList.add('fa-moon');
+                    icon.classList.remove('fa-sun');
+                    theme = 'dark';
+                }
+            });
+            $('#input').numberedtextarea({
+                // font color for line numbers
+                color: '#aaa',
 
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Program to Algo Converter</title>
-	<!-- <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet"> -->
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
-		integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
-</head>
+                // border color
+                borderColor: '#aaa',
 
-<body>
-	<div id="container">
-		<button class="button" id="theme"><i style="font-size: 20px;margin-top: 1px;" class="fa fa-moon"></i></button>
-		<h1 class="header">Program to Algorithm Converter</h1>
-		<p class="trash-talk">Are you a Computer Science student? Are you frustrated writing algorithms for all your
-			programs? Then worry not this small project will save thousands of hour of your life. Hope you will be
-			benefitted by this and please help more of your fellow frustrated friends and waste your time doing
-			something fun rather than writing algos.</p>
-		<div id="hero">
-			<div class="hero-item">
-				<h3 style="text-align: center;">Enter your C code here:</h3>
-				<textarea id="input"></textarea>
-			</div>
-			<div class="hero-item">
-				<h3 style="text-align: center;">Your algorithm:</h3>
-				<textarea readonly id="output"></textarea>
-			</div>
-		</div>
-		<button class="button" onclick="convert()" id="convert">Convert</button>
-		<h3 class="header">Disclaimer</h3>
-		<p class="trash-talk">I am not a compilier designer by any means, in fact I have almost no or very minimum
-			knowledge about compilier design, I am just college student so don't expect this to be 100% bug free. This
-			is just a tool to save some time for the college students so if you provide code written in proper
-			convention and the code is compilied it should work for most of the times. <b>Even if it works it will be
-				still recommended to check it once and make the small changes.</b></p>
-		<br>
-		<br>
-		<h3 class="header">Contact Me</h3>
-		<p class="trash-talk">You found a bug? Feel free to mention it in the social media links below. </p>
-		<div id="icons">
-			<div class="icon" onclick="window.open('https://www.facebook.com/sayan.bhattacharya.5099940/')">
-				<i class="fab fa-facebook-f"></i>
-			</div>
-			<div class="icon" onclick="window.open('https://github.com/Thunder80')">
-				<i class="fab fa-github"></i>
-			</div>
-			<div class="icon" onclick="window.open('https://www.linkedin.com/in/sayan-bhattacharya-200457189/')">
-				<i class="fab fa-linkedin"></i>
-			</div>
-		</div>
-		<hr style="width: 40vw;margin-bottom: 30px;margin-top: 20px;">
-	</div>
-	<script type="text/javascript" src="app.js"></script>
-	<script type="text/javascript">
-		let theme = "dark";
-		let root = document.documentElement;
-		document.getElementById("theme").addEventListener('click', function () {
-			if (theme === "dark") {
-				root.style.setProperty("--primary-dark", "#eee");
-				root.style.setProperty("--primary-light", "#000");
-				this.children[0].classList.remove("fa-moon");
-				this.children[0].classList.add("fa-sun");
-				theme = "light";
-			}
-			else {
-				root.style.setProperty("--primary-dark", "#000");
-				root.style.setProperty("--primary-light", "#eee");
-				this.children[0].classList.remove("fa-sun");
-				this.children[0].classList.add("fa-moon");
-				theme = "dark";
-			}
-		});
-
-	</script>
-</body>
-
->>>>>>> 991c7645609ef1b49d7c097667cb1591e62313b4
+                // if true Tab key creates indentation
+                allowTabChar: false,
+            });
+        </script>
+    </body>
 </html>
